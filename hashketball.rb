@@ -164,7 +164,7 @@ def team_names
 end
 
 def player_numbers(team_name)
-  game_hash.each do |home_away, keys|
+  game_hash.each do |away, keys|
     if keys[:team_name] == team_name
       return keys[:players].map { |player| player[:number] }
     end
@@ -172,7 +172,7 @@ def player_numbers(team_name)
 end
 
 def player_stats(player_n)
-  game_hash.each do |home_away, keys|
+  game_hash.each do |away, keys|
     keys[:players].each do |player|
       if player[:player_name] == player_n
         return player.delete_if {|stat, value| [:player_name].include?(stat)}
@@ -185,7 +185,7 @@ end
 def big_shoe_rebounds
   biggest = 0
   rebounds = 0
-  game_hash.each do |home_away, keys|
+  game_hash.each do |away, keys|
     keys[:players].each do |player|
       size = player[:shoe]
       if size > biggest
@@ -200,7 +200,7 @@ end
 def most_points_scored
   most_points = 0
   mvp = ''
-  game_hash.each do |home_away, keys|
+  game_hash.each do |away, keys|
     keys[:players].each do |player|
       points = player[:points]
       if points > most_points
@@ -215,7 +215,7 @@ end
 def winning_team
   total_points = 0
   win_team = ''
-  game_hash.each do |home_away, keys|
+  game_hash.each do |laway, keys|
     team_points = 0
     team_name = game_hash[home_away][:team_name]
     keys[:players].each do |player|
