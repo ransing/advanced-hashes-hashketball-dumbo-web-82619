@@ -102,16 +102,31 @@ def game_hash
 		            ] }
 		  }
 		end
-		
-def num_points_scored(player_n)
-  game_hash.each do |home_away, keys|
-    # keys[:players].each do |player|
-    team.each do |attribute, data| 
-      return player[:points]
-      if player[:player_name] == player_n
-    end
-  end
-end
+
+
+def num_points_scored(name)
+	game_hash.each do |location, team|
+		team.each do |attribute, data|
+ 			if attribute == :players
+				data.each do |player|
+ 					if player[:player_name] == name
+						 return player[:points]
+					end
+ 				end
+ 			end
+ 		end
+	end
+ end
+ 
+# def num_points_scored(player_n)
+#   game_hash.each do |home_away, keys|
+#     # keys[:players].each do |player|
+#     team.each do |attribute, data| 
+#       return player[:points]
+#       if player[:player_name] == player_n
+#     end
+#   end
+# end
 
 # def shoe_size(player_n)
 #   game_hash.each do |home_away, keys|
