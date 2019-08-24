@@ -213,3 +213,23 @@ def winning_team
   return win_team
 end
 
+def player_with_longest_name
+    longest_name = []
+  game_hash.values.each do |team|
+    team[:players].each do |player|
+      longest_name << player[:player_name]
+    end
+  end
+longest_name.max_by{|name| name.length}
+end
+
+def long_name_steals_a_ton?
+   longest = {}
+  game_hash.values.each do |team|
+    team[:players].each do |player|
+      longest[player[:player_name]] = player[:steals]
+    end
+  end
+most_steals = longest.values.max
+longest[longest.key(most_steals)] == most_steals
+end
